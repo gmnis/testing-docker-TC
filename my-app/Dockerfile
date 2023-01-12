@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM node:18-alpine
 WORKDIR /my-app
-COPY package*.json ./
-RUN npm install
-COPY . .
+COPY ..
+RUN npm ci
+RUN npm run build
+ENV NODE_ENV production
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["npm", "start", "build"]
